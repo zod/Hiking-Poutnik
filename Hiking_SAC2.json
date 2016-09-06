@@ -1,7 +1,7 @@
 {
    "iswet": 0,
-   "SAC_scale_preferred" : 1,
-   "SAC_scale_limit" : 3,
-   "descrption" : "SAC T1 - hiking - Trail well cleared, Area flat or slightly sloped, no fall hazard",
+   "SAC_scale_preferred": 1,
+   "SAC_scale_limit": 3,
+   "description": "SAC T2 - mountain_hiking - Trail with continuous line and balanced ascent, Terrain partially steep, fall hazard possible, Hiking shoes recommended, Some sure footedness",
    "hiking_routes_preference" : 0.6
 }
