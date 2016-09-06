@@ -6,7 +6,7 @@ task :default => ['Walking', 'Hiking_SAC2']
 task :Walking => ['Walking.brf', 'Walking-wet.brf']
 CLOBBER.include(Rake::Task[:Walking].prerequisites)
 
-task :Hiking_SAC2 => ['Hiking-SAC2.brf', 'Hiking-SAC2-SHRP.brf']
+task :Hiking_SAC2 => ['Hiking_SAC2.brf', 'Hiking_SAC2-SHRP.brf', 'Hiking_SAC2-VSHRP.brf']
 CLOBBER.include(Rake::Task[:Hiking_SAC2].prerequisites)
 
 rule '.brf' => ['.json'] do |t| 
@@ -24,25 +24,12 @@ def merge_json(files_input, file_output)
   end
 end
 
-# FIXME merge three rules into one
 # FIXME add json files to CLEAN/CLOBBER
-rule '-wet.json' => [
-  proc { |tn| [tn.sub('-wet.json', '.json'), 'wet.json'] }
-] do |t|
-  # Merge all prerequisites (last file wins)
-  merge_json(t.prerequisites, t.name)
-end
-
-rule '-SHRP.json' => [
-  proc { |tn| [tn.sub('-SHRP.json', '.json'), 'SHRP.json'] }
-] do |t|
-  # Merge all prerequisites (last file wins)
-  merge_json(t.prerequisites, t.name)
-end
-
-rule '-VSHRP.json' => [
-  proc { |tn| [tn.sub('-VSHRP.json', '.json'), 'VSHRP.json'] }
-] do |t|
+# Walking-wet.json -> Walking.json, wet.json
+rule( /-.*\.json$/ => [
+  proc { |tn| [tn.sub(/-.*.json$/, '.json'), tn.sub(/^.*-/, '')] }
+]) do |t|
+  puts "Merging #{t.prerequisites.join(', ')} -> #{t.name}"
   # Merge all prerequisites (last file wins)
   merge_json(t.prerequisites, t.name)
 end
