@@ -1,6 +1,6 @@
 # Walking-Hiking-Mountain/Alpine Hiking profile TEMPLATE
 #
-# LEGEND
+# ${description}
 #
 # Legend above is placeholder for generated comments of final profile
 # See the profile bottom for changelogs and verbose *) comments
@@ -20,16 +20,16 @@ assign   shortest_way             0    # 0 as default, duplicate shortest standa
 assign   turnInstructionMode  =   1       # 0=none, 1=auto-choose, 2=locus-style, 3=osmand-style
 assign   turnInstructionCatchingRange  20 # V1.8.5 / default=40, but foot paths may be more distingushed, especially in cities.
 
-assign   is_wet                    0       # %is_wet% | Wet conditions | boolean
-assign   hiking_routes_preference  0.20    # 0.10 as default, Increases cost of non hiking routes by multiplier 1 + hiking_routes_preference
+assign   is_wet                    ${is_wet} # %is_wet% | Wet conditions | boolean
+assign   hiking_routes_preference  ${hiking_routes_preference} # 0.10 as default, Increases cost of non hiking routes by multiplier 1 + hiking_routes_preference
 assign   Offroad_factor            0.0 # default 0.0, try 0.5-2.5 ( max 3 ). See the bottom and also https://github.com/poutnikl/Brouter-profiles/wiki/Trekking-MTB-Profiles---legend
 assign   path_preference           0.0 # 0.0 as default, try 1.0-20.0 to penalize nonpath ways a/o paved ways
 
 #SAC - mountain hiking - see http://wiki.openstreetmap.org/wiki/Key:sac_scale
 
-assign   SAC_scale_limit          3    # 0..6, 0 to avoid any SAC paths, 1 for T1 as maximum, 6 for T6 as maximum
+assign   SAC_scale_limit          ${SAC_scale_limit}    # 0..6, 0 to avoid any SAC paths, 1 for T1 as maximum, 6 for T6 as maximum
                                        # all paths with sac_scale higher than  SAC_scale_limit are forbidden.
-assign   SAC_scale_preferred      1    # The same, but the preferred SAC scale level. Level below are slightly, above strongly penalized
+assign   SAC_scale_preferred      ${SAC_scale_preferred}    # The same, but the preferred SAC scale level. Level below are slightly, above strongly penalized
 assign   SAC_access_penalty       9000 # 1 m like 9 km of normal roas. A costfactors <9999 means the most horrible but allowed road. 
                                        # Such a road is taken as the last and the only option.  
                                        # CF=9999+ means a forbidden road, but if equal to 9999, navigation hints considered.
