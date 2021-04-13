@@ -15,10 +15,10 @@ def build(bld):
         _, _, configs = task.outputs[0].name[:-4].partition('_')
         params = {}
         for config_filename in configs.split('-'):
+            description = params.get('description', '')
             config = json.load(open(config_filename + '.json'))
-            # FIXME description should be concat
-            # config['description'] = params['description']
             params.update(config)
+            params['description'] = ' '.join([description, params.get('description', '')]).strip()
 
         template = Template(text)
         return template.substitute(params)
