@@ -16,7 +16,8 @@ def build(bld):
         params = {}
         for config_filename in configs.split('-'):
             description = params.get('description', '')
-            config = json.load(open(config_filename + '.json'))
+            node = bld.path.find_resource(config_filename + '.json')
+            config = json.load(node)
             params.update(config)
             params['description'] = ' '.join([description, params.get('description', '')]).strip()
 
